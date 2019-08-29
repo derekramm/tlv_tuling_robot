@@ -15,10 +15,16 @@ logging.basicConfig(
     level=logging.DEBUG)  # 日志的级别
 
 
-# 第01步（困难）：定义装饰器函数 log()，装饰目标函数，将目标函数的返回值写入日志
+def log(func):
+    def wrapper(*args):  # 练习不定长参数
+        result = func(*args)
+        logging.debug(result)
+        return result  # 这里不要忘记 return
+
+    return wrapper  # 注意不要加括号
 
 
-# 第02步：装饰 question() 函数，将用户输入的问题写入日志
+@log
 def question(prompt='我'):
     """
     接收用户输入的函数
@@ -29,7 +35,7 @@ def question(prompt='我'):
     return f'{prompt}：{robot.input_text}'  # 必须添加返回值才可以被写入日志
 
 
-# 第03步：装饰 answer() 函数，将机器人的回答写入日志
+@log
 def answer(prompt='机器人'):
     """
     机器人回复的函数
