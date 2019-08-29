@@ -4,12 +4,14 @@
 
 import tuling_robot as robot
 
-# 第01步：请在下方 '' 中填写 robot.key，不填写使用默认 APIKEY（有可能失效）
 robot.key = '' or robot.key
 
 if __name__ == '__main__':
-    # 第02步：通过 input() 函数获取输入的内容，并赋值给机器人变量 robot.input_text
+    # 通过用户输入赋值 robot.input_text 属性
+    robot.input_text = input('我：')
 
-    # 第03步：通过 robot.get_values() 函数获取机器人返回的结果，使用 print() 函数打印结果
-
-    pass
+    # 第01步：通过 if 语句检查输入的合法性和有效性
+    # 如果输入的文本是：['88','886','exit','quit'] 其中的一个，输出信息：'拜拜~~'
+    # 如果输入的文本为空（直接回车），则直接使用 pass 忽略
+    # 如果输入其它文本，则调用机器人接口函数 get_values() 并打印
+    robot.get_values()
