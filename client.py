@@ -7,11 +7,14 @@ import tuling_robot as robot
 robot.key = '' or robot.key
 
 if __name__ == '__main__':
-    # 通过用户输入赋值 robot.input_text 属性
-    robot.input_text = input('我：')
 
-    # 第01步：通过 if 语句检查输入的合法性和有效性
-    # 如果输入的文本是：['88','886','exit','quit'] 其中的一个，输出信息：'拜拜~~'
-    # 如果输入的文本为空（直接回车），则直接使用 pass 忽略
-    # 如果输入其它文本，则调用机器人接口函数 get_values() 并打印
-    robot.get_values()
+    # 第01步：使用 死循环（无限循环）实现重复聊天的效果
+    robot.input_text = input('我：')
+    if robot.input_text in ['88', '886', 'exit', 'quit']:
+        print('机器人：', '拜拜~~')
+        # 第02步：使用循环控制语句 break 终端循环
+    elif not robot.input_text:
+        # 第03步：使用循环控制语句 continue 跳出本次循环继续下次循环
+        pass
+    else:
+        print('机器人：', robot.get_values())
