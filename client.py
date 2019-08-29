@@ -10,15 +10,6 @@ robot.key = '' or robot.key
 # 第01步：导入日志模块 logging
 # 定义 logging 的配置
 # 日志模块的基本配置
-"""参考：
-import logging
-logging.basicConfig(
-    filename="chat.log",  # 日志文件名称
-    filemode="a",  # 文件操作方式：追加
-    format="%(asctime)s %(name)s:%(levelname)s:%(message)s",  # 日志记录的格式
-    datefmt="%d-%M-%Y %H:%M:%S",  # 日期格式
-    level=logging.DEBUG)  # 日志的级别
-"""
 
 
 def question(prompt='我'):
@@ -47,15 +38,18 @@ def answer(prompt='机器人'):
     return f'{prompt}：{reply}'  # 必须添加返回值才可以被写入日志
 
 
-# 第01步：
-# 定义 chat(master_naem, robot_name, *exit_words) 函数，封装用户姓名，机器人姓名和退出关键字列表
-# chat() 函数将之前主函数循环结构的所有代码封装起来
-# 主要练习函数参数的使用
 def chat(master_name, robot_name, *exit_words):
-    pass
+    while True:
+        question(master_name)
+
+        if robot.input_text in exit_words:
+            print(robot_name, '：拜拜~~')
+            break
+        elif not robot.input_text:
+            continue
+        else:
+            print(answer(robot_name))
 
 
 if __name__ == '__main__':
-    # 第02步：调用定义的 chat() 函数，并给参数赋值
-    # 退出关键字元组示例：*('88', '886', 'exit', 'quit')
-    pass
+    chat('我', '阿拉蕾', *('88', '886', 'exit', 'quit'))
